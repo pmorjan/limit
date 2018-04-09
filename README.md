@@ -12,7 +12,7 @@ import (
 )
 
 func limitRequests(next http.Handler) http.Handler {
-    userLimit:= limit.New(1, 10) // 1 request per second, burst 10
+    userLimit,_ := limit.New(1, 10) // 1 request per second, burst 10
 
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		ip := realip.FromRequest(r)
